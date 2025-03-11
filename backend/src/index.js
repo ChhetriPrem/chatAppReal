@@ -16,11 +16,13 @@ dotenv.config();
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
 
-app.use(express.json());
+app.use(express.json({ limit: "50mb" })); // Increase limit
+app.use(express.urlencoded({ limit: "50mb", extended: true })); // Increase for form data
+
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "http://localhost:5174",
     credentials: true,
   })
 );
